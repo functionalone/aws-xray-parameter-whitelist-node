@@ -1,0 +1,10 @@
+# package directories
+node_modules
+#dist is only for the package
+dist
+#local env file
+.env
+#ignore npm pack output
+aws-xray-parameter-whitelist-*.tgz
+
+
