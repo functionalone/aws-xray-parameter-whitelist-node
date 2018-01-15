@@ -1,12 +1,12 @@
 {
   "name": "aws-xray-parameter-whitelist",
   "private": false,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "engines": {
     "node": ">=4.x"
   },
   "description": "Configure AWS X-Ray with an additional parameter whitelist services",
-  "main": "dist/index.js",
+  "main": "dist/lib/index.js",
   "scripts": {
     "clean": "rimraf dist",
     "test": "mocha   ./dist/test/**/*.test.js",
@@ -54,7 +54,7 @@
     "*.md"
   ],
   "typescript": {
-    "definition": "dist/index.d.ts"
+    "definition": "dist/lib/index.d.ts"
   },
-  "typings": "dist/index.d.ts"
+  "typings": "dist/lib/index.d.ts"
 }
