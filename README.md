@@ -52,3 +52,17 @@ After the configuration is setup, trace calls to S3 will include the BucketName 
 }
 ```
 
+# Generating Your Own Parameter Whitelist
+
+You can generate your own parameter whitelist using a provided utility script. For example you can use this script to generate a parameter whitelist for an additional service not yet included.The compiled script is available at: `dist/util/generate-param-whitelist.js` as part of the npm package distribution. 
+
+Usage:
+```
+generate-param-whitelist.js <output file> <service_name> <param_names>+
+Where each param name can also have an optional rename value separated by: ':'
+```
+
+Usage example used for generating S3 whitelist:
+```
+dist/util/generate-param-whitelist.js whitelist.out.json s3 Bucket:bucket_name Key VersionId Prefix CopySource
+```

@@ -49,6 +49,7 @@
   "files": [
     "dist/index.*",
     "dist/lib/**",
+    "dist/util/**",
     "src/",
     "resources/",
     "*.md"
