@@ -22,5 +22,6 @@ export interface ParameterWhitelist {
   };
 }
 
-// tslint:disable-next-line:no-var-requires
+// tslint:disable:no-var-requires
 export const s3_whitelist: ParameterWhitelist = require('../../resources/s3_whitelist.json');
+export const sns_whitelist: ParameterWhitelist = require('../../resources/sns_whitelist.json');

@@ -1,0 +1,107 @@
+{
+  "services": {
+    "sns": {
+      "operations": {
+        "addPermission": {
+          "request_parameters": [
+            "TopicArn"
+          ]
+        },
+        "confirmSubscription": {
+          "request_parameters": [
+            "TopicArn"
+          ]
+        },
+        "createPlatformApplication": {
+          "request_parameters": [
+            "Name",
+            "Platform"
+          ]
+        },
+        "createPlatformEndpoint": {
+          "request_parameters": [
+            "PlatformApplicationArn"
+          ]
+        },
+        "createTopic": {
+          "request_parameters": [
+            "Name"
+          ]
+        },
+        "deletePlatformApplication": {
+          "request_parameters": [
+            "PlatformApplicationArn"
+          ]
+        },
+        "deleteTopic": {
+          "request_parameters": [
+            "TopicArn"
+          ]
+        },
+        "getPlatformApplicationAttributes": {
+          "request_parameters": [
+            "PlatformApplicationArn"
+          ]
+        },
+        "getSubscriptionAttributes": {
+          "request_parameters": [
+            "SubscriptionArn"
+          ]
+        },
+        "getTopicAttributes": {
+          "request_parameters": [
+            "TopicArn"
+          ]
+        },
+        "listEndpointsByPlatformApplication": {
+          "request_parameters": [
+            "PlatformApplicationArn"
+          ]
+        },
+        "listSubscriptionsByTopic": {
+          "request_parameters": [
+            "TopicArn"
+          ]
+        },
+        "publish": {
+          "request_parameters": [
+            "TopicArn",
+            "TargetArn"
+          ]
+        },
+        "removePermission": {
+          "request_parameters": [
+            "TopicArn"
+          ]
+        },
+        "setPlatformApplicationAttributes": {
+          "request_parameters": [
+            "PlatformApplicationArn"
+          ]
+        },
+        "setSubscriptionAttributes": {
+          "request_parameters": [
+            "SubscriptionArn"
+          ]
+        },
+        "setTopicAttributes": {
+          "request_parameters": [
+            "TopicArn"
+          ]
+        },
+        "subscribe": {
+          "request_parameters": [
+            "TopicArn",
+            "Protocol",
+            "Endpoint"
+          ]
+        },
+        "unsubscribe": {
+          "request_parameters": [
+            "SubscriptionArn"
+          ]
+        }
+      }
+    }
+  }
+}

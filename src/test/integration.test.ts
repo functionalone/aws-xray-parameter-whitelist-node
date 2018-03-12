@@ -9,21 +9,24 @@ dotenv.config();
 
 import * as XRay from 'aws-xray-sdk-core';
 import * as AWS from 'aws-sdk';
-import {s3_whitelist} from '../lib/index';
+import {s3_whitelist, sns_whitelist} from '../lib/index';
 import * as logger from 'winston';
 import {assert} from 'chai';
 
 describe('sdk integration tests', function() {
 
   const BUCKET = process.env.TEST_S3_BUCKET;  
+  const TOPIC = process.env.TEST_SNS_TOPIC;
   const KEY = "aws-xray-parameter-whitelist-node/s3-test-object";
   this.timeout(30000);  
 
   before(function() {
     assert.isNotEmpty(BUCKET, "Bucket name is not set. Make sure to set the variable TEST_S3_BUCKET in .env file");
+    assert.isNotEmpty(TOPIC, "Topic Arn is not set. Make sure to set the variable TEST_SNS_TOPIC in .env file");
     //initialize xray
     XRay.setLogger(logger);  
     XRay.appendAWSWhitelist(s3_whitelist);
+    XRay.appendAWSWhitelist(sns_whitelist);
     XRay.middleware.setSamplingRules({
       default: {
         fixed_target: 10,
@@ -56,6 +59,24 @@ describe('sdk integration tests', function() {
     assert.equal(s3segment.aws.bucket_name, BUCKET);
     assert.equal(s3segment.aws.key, KEY);
     console.log("sub segment aws:", s3segment.aws);
+  });
+
+  it('sns call should add topic arn to segment', async function() {
+    const sns = new AWS.SNS();
+    const subs = await sns.listSubscriptionsByTopic({TopicArn: TOPIC!}).promise();
+    assert.isNotEmpty(subs);
+    const segment = XRay.getSegment();
+    assert.isNotEmpty(segment);
+    const subsegments: any[] = segment.subsegments;
+    let snsSegement: any = null; 
+    for (const sub of subsegments) {
+      if(sub.name === 'sns') {
+        snsSegement = sub;
+        break;
+      }
+    }
+    assert.equal(snsSegement.aws.topic_arn, TOPIC);    
+    console.log("sub segment aws:", snsSegement.aws);
   });
 
 });
